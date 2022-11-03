@@ -1,6 +1,5 @@
-import React from 'react';
-import { useEffect } from 'react';
-import { useState } from 'react';
+import React from 'react'
+import { useEffect, useState } from 'react'
 
 const Calculator = () => {
 
@@ -70,17 +69,18 @@ const Calculator = () => {
     return ( 
         <div className="calculator">
             <form>
+                <h1>Print Location #1</h1>
                 <h2>Design Colors</h2>
                 <label>
-                <input onClick={(e) => setColors(Number(e.target.value))} name='design-colors' type="radio" value={1} />
+                <input onClick={ (e) => setColors(Number(e.target.value)) } name='design-colors' type="radio" value={1} />
                 1
                 </label>
                 <label>
-                <input onClick={(e) => setColors(Number(e.target.value))} name='design-colors' type="radio" value={2} />
+                <input onClick={ (e) => setColors(Number(e.target.value)) } name='design-colors' type="radio" value={2} />
                 2
                 </label>
                 <label>
-                <input onClick={(e) => setColors(Number(e.target.value))} name='design-colors' type="radio" value={3} />
+                <input onClick={ (e) => setColors(Number(e.target.value)) } name='design-colors' type="radio" value={3} />
                 3
                 </label>
                 <label>
@@ -92,9 +92,9 @@ const Calculator = () => {
                 {/* <h2>Color Changes?</h2>
                 <input onChange={ (e) => handleColorChange(e) } placeholder="0" type="number" id="quantity" name="quantity" min="0" max="4" /> */}
             </form>
-            <h1>Total: {total}</h1>
+            <h1>Total: { total }</h1>
         </div>
-     );
+     )
 }
  
-export default Calculator;
+export default Calculator
