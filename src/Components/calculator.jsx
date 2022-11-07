@@ -29,15 +29,6 @@ const Calculator = () => {
         setQuantity(e.target.value)
     }
 
-    // const handleColorChange = (e) => {
-    //     let tempTotal = 0
-    //     if(e.target.value == 1) tempTotal = (total + 10)
-    //     if(e.target.value == 2) tempTotal = (total + 20)
-    //     if(e.target.value == 3) tempTotal = (total + 30)
-    //     if(e.target.value == 4) tempTotal = (total + 40)
-    //     setTotal(tempTotal)
-    // }
-
     const costCalculation = (quantity, colors) => {
         if (quantity < 24) {
             if (colors === 1) setTotal((colors * 25) + (quantity * priceTierOne[0]))
@@ -89,8 +80,6 @@ const Calculator = () => {
                 </label>
                 <h2>Number of Pieces</h2>
                 <input onChange={ (e) => handleQuantityChange(e) } placeholder="12" type="number" id="quantity" name="quantity" min="12" max="200" />
-                {/* <h2>Color Changes?</h2>
-                <input onChange={ (e) => handleColorChange(e) } placeholder="0" type="number" id="quantity" name="quantity" min="0" max="4" /> */}
             </form>
             <h1>Total: { total }</h1>
         </div>
