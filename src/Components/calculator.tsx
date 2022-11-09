@@ -18,18 +18,18 @@ const Calculator = () => {
     }, [quantity, colors])
 
 
-    const handleQuantityChange = (e) => {
-        if (e.target.value > 200) {
+    const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (parseFloat(e.target.value) > 200) {
             setQuantity(200)
             alert('Garment quantity must be less than 200')
-        } else if (e.target.value < 0) {
+        } else if (parseFloat(e.target.value) < 0) {
             setQuantity(12)
             alert('Garment quantity must be greater than 12')
         }
-        setQuantity(e.target.value)
+        setQuantity(parseFloat(e.target.value))
     }
 
-    const costCalculation = (quantity, colors) => {
+    const costCalculation = (quantity: number, colors: number) => {
         if (quantity < 24) {
             if (colors === 1) setTotal((colors * 25) + (quantity * priceTierOne[0]))
             if (colors === 2) setTotal((colors * 25) + (quantity * priceTierOne[1]))
@@ -63,23 +63,23 @@ const Calculator = () => {
                 <h1>Print Location #1</h1>
                 <h2>Design Colors</h2>
                 <label>
-                <input onClick={ (e) => setColors(Number((e.target as HTMLInputElement).value)) } name='design-colors' type="radio" value={1} />
+                <input onChange={ (e: React.ChangeEvent<HTMLInputElement>) => setColors(Number((e.target as HTMLInputElement).value)) } name='design-colors' type="radio" value={1} />
                 1
                 </label>
                 <label>
-                <input onClick={ (e) => setColors(Number((e.target as HTMLInputElement).value)) } name='design-colors' type="radio" value={2} />
+                <input onChange={ (e: React.ChangeEvent<HTMLInputElement>) => setColors(Number((e.target as HTMLInputElement).value)) } name='design-colors' type="radio" value={2} />
                 2
                 </label>
                 <label>
-                <input onClick={ (e) => setColors(Number((e.target as HTMLInputElement).value)) } name='design-colors' type="radio" value={3} />
+                <input onChange={ (e: React.ChangeEvent<HTMLInputElement>) => setColors(Number((e.target as HTMLInputElement).value)) } name='design-colors' type="radio" value={3} />
                 3
                 </label>
                 <label>
-                <input onClick={ (e) => setColors(Number((e.target as HTMLInputElement).value)) } name='design-colors' type="radio" value={4} />
+                <input onChange={ (e: React.ChangeEvent<HTMLInputElement>) => setColors(Number((e.target as HTMLInputElement).value)) } name='design-colors' type="radio" value={4} />
                 4
                 </label>
                 <h2>Number of Pieces</h2>
-                <input onChange={ (e) => handleQuantityChange(e) } placeholder="12" type="number" id="quantity" name="quantity" min="12" max="200" />
+                <input onChange={ (e: React.ChangeEvent<HTMLInputElement>) => handleQuantityChange(e) } placeholder="12" type="number" id="quantity" name="quantity" min="12" max="200" />
             </form>
             <h1>Total: { total }</h1>
         </div>
