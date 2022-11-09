@@ -1,6 +1,6 @@
 import './App.css';
-import Calculator from './Components/calculator.jsx'
-import Navigation from './Components/nav';
+import Calculator from './Components/calculator.tsx'
+import Navigation from './Components/nav.tsx';
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 

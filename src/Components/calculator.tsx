@@ -3,14 +3,14 @@ import { useEffect, useState } from 'react'
 
 const Calculator = () => {
 
-    const [quantity, setQuantity] = useState(12)
-    const [colors, setColors] = useState(0)
-    const [total, setTotal] = useState(0)
+    const [quantity, setQuantity] = useState<number>(12)
+    const [colors, setColors] = useState<number>(0)
+    const [total, setTotal] = useState<number>(0)
     
-    const priceTierOne = [5, 6.25, 7.50, 8.75]
-    const priceTierTwo = [4.5, 5.75, 7, 8.25]
-    const priceTierThree = [4, 5.25, 6.50, 7.75]
-    const priceTierFour = [3.5, 4.75, 6, 7.25]
+    const priceTierOne: number[] = [5, 6.25, 7.50, 8.75]
+    const priceTierTwo: number[] = [4.5, 5.75, 7, 8.25]
+    const priceTierThree: number[] = [4, 5.25, 6.50, 7.75]
+    const priceTierFour: number[] = [3.5, 4.75, 6, 7.25]
 
 
     useEffect(() => {
@@ -63,19 +63,19 @@ const Calculator = () => {
                 <h1>Print Location #1</h1>
                 <h2>Design Colors</h2>
                 <label>
-                <input onClick={ (e) => setColors(Number(e.target.value)) } name='design-colors' type="radio" value={1} />
+                <input onClick={ (e) => setColors(Number((e.target as HTMLInputElement).value)) } name='design-colors' type="radio" value={1} />
                 1
                 </label>
                 <label>
-                <input onClick={ (e) => setColors(Number(e.target.value)) } name='design-colors' type="radio" value={2} />
+                <input onClick={ (e) => setColors(Number((e.target as HTMLInputElement).value)) } name='design-colors' type="radio" value={2} />
                 2
                 </label>
                 <label>
-                <input onClick={ (e) => setColors(Number(e.target.value)) } name='design-colors' type="radio" value={3} />
+                <input onClick={ (e) => setColors(Number((e.target as HTMLInputElement).value)) } name='design-colors' type="radio" value={3} />
                 3
                 </label>
                 <label>
-                <input onClick={ (e) => setColors(Number(e.target.value)) } name='design-colors' type="radio" value={4} />
+                <input onClick={ (e) => setColors(Number((e.target as HTMLInputElement).value)) } name='design-colors' type="radio" value={4} />
                 4
                 </label>
                 <h2>Number of Pieces</h2>
