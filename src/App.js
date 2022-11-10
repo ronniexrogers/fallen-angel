@@ -1,7 +1,6 @@
-import './App.css';
-import Calculator from './Components/calculator.tsx'
+import Quote from './Components/Quote.tsx'
 import Navigation from './Components/nav.tsx';
-import React from 'react';
+import * as React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 
@@ -15,7 +14,7 @@ function App() {
         <Navigation />
         <Routes>
           {/* <Route path="/" element={ <Home titleAnimation={ titleAnimation } /> } /> */}
-          <Route path="/Calculator" element={ <Calculator /> } />
+          <Route path="/Quote" element={ <Quote /> } />
           {/* <Route path="/Contact" element={ <Contact titleAnimation={ titleAnimation } /> } /> */}
         </Routes>
       </Router>

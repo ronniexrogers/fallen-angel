@@ -21,7 +21,7 @@ const Navigation = () => {
                 <NavItem>
                     <NavLink
                     active
-                    href="/Calculator"
+                    href="/Quote"
                     >
                     Calculator
                     </NavLink>

@@ -5,7 +5,7 @@ This project will be a full-stack web application for a screen printing and embr
 <h3>Tech Stack</h3>
 <ul>
     <li>React.JS</li>
-    <li>Javascript</li>
+    <li>Typescript</li>
     <li>Node</li>
     <li>HTML/CSS</li>
     <li>AWS S3</li>
