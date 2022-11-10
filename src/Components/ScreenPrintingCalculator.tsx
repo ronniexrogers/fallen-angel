@@ -11,11 +11,7 @@ const ScreenPrintingCalculator = ({ total, setTotal }: ScreenPrintingProps) => {
 
     const [quantity, setQuantity] = useState<number>(12)
     const [colors, setColors] = useState<number>(0)
-    const [visibility, setVisibility] = useState<string>('none')
-
-    const secondPrintStyle: CSS.Properties = {
-        display: visibility
-    }
+    const [visibility, setVisibility] = useState<boolean>(false)
     
     const priceTierOne: number[] = [5, 6.25, 7.50, 8.75]
     const priceTierTwo: number[] = [4.5, 5.75, 7, 8.25]
@@ -99,19 +95,21 @@ const ScreenPrintingCalculator = ({ total, setTotal }: ScreenPrintingProps) => {
                 </label>
             </form>
             </div>
-            
+            <h3>Second Print Location?</h3>
             <label>
-                <input onChange={ (e: React.ChangeEvent<HTMLInputElement>) => setVisibility('block') } 
-                    name='second-print' type="radio" value={1} />
+                <input onChange={ (e: React.ChangeEvent<HTMLInputElement>) => setVisibility(true) } 
+                    name='second-print' type="radio" />
                 Yes
             </label>
             <label>
-                <input onChange={ (e: React.ChangeEvent<HTMLInputElement>) => setVisibility('none') } 
-                    name='second-print' type="radio" value={1} />
+                <input onChange={ (e: React.ChangeEvent<HTMLInputElement>) => setVisibility(false) } 
+                    name='second-print' type="radio" />
                 No
             </label>
 
-            <div className="print-location-two" style={secondPrintStyle}>
+            <div className="print-location-two" style={{
+                display: visibility ? 'block' : 'none'
+            }}>
             <form>
                 <h1>Print Location #2</h1>
                 <h2>Design Colors</h2>
