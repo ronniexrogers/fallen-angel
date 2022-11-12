@@ -114,25 +114,25 @@ const ScreenPrintingCalculator = ({ total, setTotal }: ScreenPrintingProps) => {
                 <h1>Print Location #2</h1>
                 <h2>Design Colors</h2>
                 <label>
-                <input onChange={ (e: React.ChangeEvent<HTMLInputElement>) => 
+                <input onChange={ (e: React.ChangeEvent<HTMLInputElement>) : void => 
                     setColors(Number((e.target as HTMLInputElement).value)) } 
                     name='design-colors' type="radio" value={1} />
                 1
                 </label>
                 <label>
-                <input onChange={ (e: React.ChangeEvent<HTMLInputElement>) => 
+                <input onChange={ (e: React.ChangeEvent<HTMLInputElement>) : void => 
                     setColors(Number((e.target as HTMLInputElement).value)) } 
                     name='design-colors' type="radio" value={2} />
                 2
                 </label>
                 <label>
-                <input onChange={ (e: React.ChangeEvent<HTMLInputElement>) => 
+                <input onChange={ (e: React.ChangeEvent<HTMLInputElement>) : void => 
                     setColors(Number((e.target as HTMLInputElement).value)) } 
                     name='design-colors' type="radio" value={3} />
                 3
                 </label>
                 <label>
-                <input onChange={ (e: React.ChangeEvent<HTMLInputElement>) => 
+                <input onChange={ (e: React.ChangeEvent<HTMLInputElement>) : void => 
                     setColors(Number((e.target as HTMLInputElement).value)) } 
                     name='design-colors' type="radio" value={4} />
                 4
@@ -140,7 +140,7 @@ const ScreenPrintingCalculator = ({ total, setTotal }: ScreenPrintingProps) => {
             </form>
             </div>
             <h2>Number of Pieces</h2>
-                <input onChange={ (e: React.ChangeEvent<HTMLInputElement>) => 
+                <input onChange={ (e: React.ChangeEvent<HTMLInputElement>) : void => 
                     handleQuantityChange(e) } 
                     placeholder="12" type="number" id="quantity" name="quantity" min="12" max="200" />
         </div>

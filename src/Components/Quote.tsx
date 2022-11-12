@@ -12,12 +12,18 @@ const Quote = () => {
         <div className="quote">
             <h2>What type of work would you like?</h2>
             <label>
-            <input onClick={ () => setVisibility(false) } 
-                name='type-of-work' type="radio" />
+            <input onClick={ () => {
+                setVisibility(false)
+                setTotal(0)
+            }} 
+                name='type-of-work' type="radio" defaultChecked />
                 Screen Printing
             </label>
             <label>
-                <input onClick={ () => setVisibility(true)} 
+                <input onClick={ () => {
+                setVisibility(true)
+                setTotal(0)
+            }} 
                 name='type-of-work' type="radio" />
                 Embroidery
             </label>
@@ -29,7 +35,7 @@ const Quote = () => {
             <div className="embroidery" style={{
                 display: visibility ? 'block' : 'none'
             }}>
-                <EmbroideryCalculator />
+                <EmbroideryCalculator total={total} setTotal={setTotal} />
             </div>
             <h1>Total: { total }</h1>
         </div>
