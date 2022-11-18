@@ -15,11 +15,14 @@ const ScreenPrintingCalculator = ({ total, setTotal }: ScreenPrintingProps) => {
 
 
     const [quantity, setQuantity] = useState<number>(12)
-    const [colorsOne, setcolorsOneOne] = useState<number>(0)
+    const [colorsOne, setColorsOne] = useState<number>(0)
     const [visibility, setVisibility] = useState<boolean>(false)
     const [secondPrint, setSecondPrint] = useState<boolean>(false)
     const [garment, setGarment] = useState<any>({type: 'Basic 100% Cotton Tee', price: 4})
     const [totalOne, setTotalOne] = useState<number>(0)
+    const [totalTwo, setTotalTwo] = useState<number>(0)
+    const [colorsTwo, setColorsTwo] = useState<number>(0)
+
     
     const priceTierOne: number[] = [5, 6.25, 7.50, 8.75]
     const priceTierTwo: number[] = [4.5, 5.75, 7, 8.25]
@@ -49,8 +52,10 @@ const ScreenPrintingCalculator = ({ total, setTotal }: ScreenPrintingProps) => {
 
 
     useEffect(() => {
-        costCalculation(quantity, colorsOne, garment)
-    }, [quantity, colorsOne, garment])
+        costCalculationOne(quantity, colorsOne, garment)
+        costCalculationTwo(colorsTwo, quantity)
+        console.log(colorsTwo)
+    }, [quantity, colorsOne, garment, colorsTwo])
 
     useEffect(() => {
         if(typeof garment === 'string') {
@@ -70,7 +75,7 @@ const ScreenPrintingCalculator = ({ total, setTotal }: ScreenPrintingProps) => {
         setQuantity((parseFloat(e.target.value)))
     }
 
-    const costCalculation = (quantity: number, colorsOne: number, garment: Garments) : number => {
+    const costCalculationOne = (quantity: number, colorsOne: number, garment: Garments) : number => {
         if (quantity < 24) {
             if (colorsOne === 1) setTotalOne(((colorsOne * 25) + (quantity * priceTierOne[0]) + (quantity * garment.price)))
             if (colorsOne === 2) setTotalOne(((colorsOne * 25) + (quantity * priceTierOne[1]) + (quantity * garment.price)))
@@ -98,6 +103,34 @@ const ScreenPrintingCalculator = ({ total, setTotal }: ScreenPrintingProps) => {
         return totalOne
     }
 
+    const costCalculationTwo = (colorsTwo: number, quantity: number) : number => {
+        if (quantity < 24) {
+            if (colorsTwo === 1) setTotalTwo(((colorsTwo * 25) + (quantity * priceTierOne[0])))
+            if (colorsTwo === 2) setTotalTwo(((colorsTwo * 25) + (quantity * priceTierOne[1])))
+            if (colorsTwo === 3) setTotalTwo(((colorsTwo * 25) + (quantity * priceTierOne[2])))
+            if (colorsTwo === 4) setTotalTwo(((colorsTwo * 25) + (quantity * priceTierOne[3])))
+        }
+        if (quantity > 23 && quantity < 72) {
+            if (colorsTwo === 1) setTotalTwo(((colorsTwo * 25) + (quantity * priceTierTwo[0])))
+            if (colorsTwo === 2) setTotalTwo(((colorsTwo * 25) + (quantity * priceTierTwo[1])))
+            if (colorsTwo === 3) setTotalTwo(((colorsTwo * 25) + (quantity * priceTierTwo[2])))
+            if (colorsTwo === 4) setTotalTwo(((colorsTwo * 25) + (quantity * priceTierTwo[3])))
+        }
+        if (quantity > 71 && quantity < 145) {
+            if (colorsTwo === 1) setTotalTwo(((colorsTwo * 25) + (quantity * priceTierThree[0])))
+            if (colorsTwo === 2) setTotalTwo(((colorsTwo * 25) + (quantity * priceTierThree[1])))
+            if (colorsTwo === 3) setTotalTwo(((colorsTwo * 25) + (quantity * priceTierThree[2])))
+            if (colorsTwo === 4) setTotalTwo(((colorsTwo * 25) + (quantity * priceTierThree[3])))
+        }
+        if (quantity > 144) {
+            if (colorsTwo === 1) setTotalTwo(((colorsTwo * 25) + (quantity * priceTierFour[0])))
+            if (colorsTwo === 2) setTotalTwo(((colorsTwo * 25) + (quantity * priceTierFour[1])))
+            if (colorsTwo === 3) setTotalTwo(((colorsTwo * 25) + (quantity * priceTierFour[2])))
+            if (colorsTwo === 4) setTotalTwo(((colorsTwo * 25) + (quantity * priceTierFour[3])))
+        }
+        return totalTwo
+    }
+
     return ( 
         <div className="screen-print-calculator">
             <div className="print-location-one">
@@ -118,25 +151,25 @@ const ScreenPrintingCalculator = ({ total, setTotal }: ScreenPrintingProps) => {
                 <h2>Design Colors</h2>
                 <label>
                 <input onChange={ (e: React.ChangeEvent<HTMLInputElement>) : void => 
-                    setcolorsOneOne(Number((e.target as HTMLInputElement).value)) } 
+                    setColorsOne(Number((e.target as HTMLInputElement).value)) } 
                     name='design-colorsOne' type="radio" value={1} />
                 1
                 </label>
                 <label>
                 <input onChange={ (e: React.ChangeEvent<HTMLInputElement>) : void => 
-                    setcolorsOneOne(Number((e.target as HTMLInputElement).value)) } 
+                    setColorsOne(Number((e.target as HTMLInputElement).value)) } 
                     name='design-colorsOne' type="radio" value={2} />
                 2
                 </label>
                 <label>
                 <input onChange={ (e: React.ChangeEvent<HTMLInputElement>) : void => 
-                    setcolorsOneOne(Number((e.target as HTMLInputElement).value)) } 
+                    setColorsOne(Number((e.target as HTMLInputElement).value)) } 
                     name='design-colorsOne' type="radio" value={3} />
                 3
                 </label>
                 <label>
                 <input onChange={ (e: React.ChangeEvent<HTMLInputElement>) : void => 
-                    setcolorsOneOne(Number((e.target as HTMLInputElement).value)) } 
+                    setColorsOne(Number((e.target as HTMLInputElement).value)) } 
                     name='design-colorsOne' type="radio" value={4} />
                 4
                 </label>
@@ -144,7 +177,7 @@ const ScreenPrintingCalculator = ({ total, setTotal }: ScreenPrintingProps) => {
             </div>
             <h3>Second Print Location?</h3>
             <label>
-                <input onChange={ (e: React.ChangeEvent<HTMLInputElement>) : void => {
+                <input onChange={ () : void => {
                     setVisibility(true) 
                     setSecondPrint(true)
                 }} 
@@ -152,7 +185,10 @@ const ScreenPrintingCalculator = ({ total, setTotal }: ScreenPrintingProps) => {
                 Yes
             </label>
             <label>
-                <input onChange={ (e: React.ChangeEvent<HTMLInputElement>) => setVisibility(false) } 
+                <input onChange={ () : void => {
+                    setVisibility(false) 
+                    setTotalTwo(0)
+                }} 
                     name='second-print' type="radio" />
                 No
             </label>
@@ -165,25 +201,25 @@ const ScreenPrintingCalculator = ({ total, setTotal }: ScreenPrintingProps) => {
                 <h2>Design Colors</h2>
                 <label>
                 <input onChange={ (e: React.ChangeEvent<HTMLInputElement>) : void => 
-                    setcolorsOneOne(Number((e.target as HTMLInputElement).value)) } 
+                    setColorsTwo(Number((e.target as HTMLInputElement).value)) } 
                     name='design-colorsOne' type="radio" value={1} />
                 1
                 </label>
                 <label>
                 <input onChange={ (e: React.ChangeEvent<HTMLInputElement>) : void => 
-                    setcolorsOneOne(Number((e.target as HTMLInputElement).value)) } 
+                    setColorsTwo(Number((e.target as HTMLInputElement).value)) } 
                     name='design-colorsOne' type="radio" value={2} />
                 2
                 </label>
                 <label>
                 <input onChange={ (e: React.ChangeEvent<HTMLInputElement>) : void => 
-                    setcolorsOneOne(Number((e.target as HTMLInputElement).value)) } 
+                    setColorsTwo(Number((e.target as HTMLInputElement).value)) } 
                     name='design-colorsOne' type="radio" value={3} />
                 3
                 </label>
                 <label>
                 <input onChange={ (e: React.ChangeEvent<HTMLInputElement>) : void => 
-                    setcolorsOneOne(Number((e.target as HTMLInputElement).value)) } 
+                    setColorsTwo(Number((e.target as HTMLInputElement).value)) } 
                     name='design-colorsOne' type="radio" value={4} />
                 4
                 </label>
@@ -194,7 +230,7 @@ const ScreenPrintingCalculator = ({ total, setTotal }: ScreenPrintingProps) => {
                     handleQuantityChange(e) } 
                     placeholder="12" type="number" id="quantity" name="quantity" min="12" max="200" />
 
-                    <h3>{ totalOne }</h3>
+                    <h3>Total: { totalOne + totalTwo }</h3>
         </div>
      )
 }
