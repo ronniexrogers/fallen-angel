@@ -1,5 +1,4 @@
 import React, { useEffect, useState, Dispatch, SetStateAction } from "react"
-import CSS from 'csstype'
 
 interface ScreenPrintingProps {
     total: number
@@ -10,6 +9,11 @@ interface Garments {
     type: string
     price: number
 }
+
+const currencyFormatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD'
+})
 
 const ScreenPrintingCalculator = ({ total, setTotal }: ScreenPrintingProps) => {
 
@@ -28,8 +32,6 @@ const ScreenPrintingCalculator = ({ total, setTotal }: ScreenPrintingProps) => {
     const priceTierTwo: number[] = [4.5, 5.75, 7, 8.25]
     const priceTierThree: number[] = [4, 5.25, 6.50, 7.75]
     const priceTierFour: number[] = [3.5, 4.75, 6, 7.25]
-
-    let temp: string
 
     const garments: Garments[] = [
         {type: 'Basic 100% Cotton Tee',
@@ -230,7 +232,7 @@ const ScreenPrintingCalculator = ({ total, setTotal }: ScreenPrintingProps) => {
                     handleQuantityChange(e) } 
                     placeholder="12" type="number" id="quantity" name="quantity" min="12" max="200" />
 
-                    <h3>Total: { totalOne + totalTwo }</h3>
+                    <h3>Total: { currencyFormatter.format(totalOne + totalTwo) } | { currencyFormatter.format((totalOne + totalTwo) / quantity) } per piece</h3>
         </div>
      )
 }
