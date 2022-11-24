@@ -21,7 +21,6 @@ const ScreenPrintingCalculator = ({ total, setTotal }: ScreenPrintingProps) => {
     const [quantity, setQuantity] = useState<number>(12)
     const [colorsOne, setColorsOne] = useState<number>(0)
     const [visibility, setVisibility] = useState<boolean>(false)
-    const [secondPrint, setSecondPrint] = useState<boolean>(false)
     const [garment, setGarment] = useState<any>({type: 'Basic 100% Cotton Tee', price: 4})
     const [totalOne, setTotalOne] = useState<number>(0)
     const [totalTwo, setTotalTwo] = useState<number>(0)
@@ -34,12 +33,16 @@ const ScreenPrintingCalculator = ({ total, setTotal }: ScreenPrintingProps) => {
     const priceTierFour: number[] = [3.5, 4.75, 6, 7.25]
 
     const garments: Garments[] = [
+         {type: '-Shirts',
+         price: 0},
         {type: 'Basic 100% Cotton Tee',
         price: 4}, 
         {type: 'Heavyweight 100% Cotton Tee',
          price: 5}, 
         {type: 'Premium Heavyweight 100% Cotton Tee',
          price: 7}, 
+         {type: '-Sweaters',
+         price: 0},
         {type: '100% Cotton Hoodie',
          price: 15}, 
         {type: 'Heavyweight 100% Cotton Hoodie',
@@ -143,9 +146,11 @@ const ScreenPrintingCalculator = ({ total, setTotal }: ScreenPrintingProps) => {
                     name="garment-type" 
                     id="garment-type"
                     >
-                    <option value='1' disabled={true}>Select Garment Type</option>
                     { garments.map((item, i) => {
-                        return (
+                        if(item.price === 0) return (
+                        <option disabled={true} value={JSON.stringify(item)} key={i}> { `${item.type}` } </option>
+                        )
+                        else return (
                         <option value={JSON.stringify(item)} key={i}> { `${item.type} || $${item.price}` } </option>
                     )}) }
                 </select>
@@ -181,7 +186,6 @@ const ScreenPrintingCalculator = ({ total, setTotal }: ScreenPrintingProps) => {
             <label>
                 <input onChange={ () : void => {
                     setVisibility(true) 
-                    setSecondPrint(true)
                 }} 
                     name='second-print' type="radio" />
                 Yes
